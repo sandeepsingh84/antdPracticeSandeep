@@ -1,0 +1,32 @@
+// for component unmouting first will render the if(dispatch) part,then we will go to another page(means component will unmout) the return() part will be execute
+useEffect(() => {
+    if (dispatch) {
+      dispatch({
+        type: 'global/setQuestions',
+        payload: {
+          body: Questions,
+        },
+      });
+    }
+    // for component unmount
+    return () => {
+      console.log(`1`, 1)
+      cleanup
+    }
+  }, []);
+
+
+  ///loading effects
+
+  const Practice = ({ dispatch, conditions,loadData }) => {   //destructure here loadData
+   
+    return <div loading={loadData}>progressing</div>;         //set loadData here
+};
+
+export default connect(({ question,loading }) => ({          //get loading keyword here
+    conditions: question.jhsgd,
+    loadData: loading.effects['question/practiceSetQuestion'],
+}))(Practice);
+
+//import icons from antd 
+import { MehTwoTone } from "@ant-design/icons";
